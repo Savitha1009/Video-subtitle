@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Automated Subtitle Burner</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Subtitle Burner</div>
+        <div class="nav-links">
+            <span id="welcomeUser"></span>
+            <button onclick="logout()" class="btn btn-sm btn-danger">Logout</button>
+        </div>
+    </nav>
+    <div class="container dashboard-container">
+        <div class="dashboard-header">
+            <h2>Your Videos</h2>
+            <a href="/upload" class="btn btn-primary">+ Upload New Video</a>
+        </div>
+        
+        <table class="video-table">
+            <thead>
+                <tr>
+                    <th>Video Name</th>
+                    <th>Language</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="videoTableBody">
+                <!-- Data populated by JS -->
+            </tbody>
+        </table>
+    </div>
+    <script src="/static/js/script.js"></script>
+    <script>
+        // Check auth and load dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!checkAuth()) return;
+            document.getElementById('welcomeUser').textContent = 'Welcome, ' + localStorage.getItem('userName');
+            loadVideos();
+        });
+    </script>
+</body>
+</html>

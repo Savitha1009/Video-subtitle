@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Result - Automated Subtitle Burner</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Subtitle Burner</div>
+        <div class="nav-links">
+            <a href="/dashboard" class="btn btn-sm btn-secondary">Dashboard</a>
+        </div>
+    </nav>
+    <div class="container result-container">
+        <h2>Processing Status</h2>
+        
+        <div class="video-info" id="videoInfo">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="status-timeline">
+            <h3>Progress</h3>
+            <ul id="logList" class="log-list">
+                <!-- Populated by JS -->
+            </ul>
+        </div>
+        
+        <div id="downloadSection" style="display:none; margin-top: 20px;">
+            <button class="btn btn-success" onclick="downloadVideo('{{ video_id }}')">Download Final Video</button>
+        </div>
+    </div>
+    
+    <script src="/static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!checkAuth()) return;
+            startPollingStatus('{{ video_id }}');
+        });
+    </script>
+</body>
+</html>
